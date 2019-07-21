@@ -114,38 +114,22 @@ daovoice('update');
  </script>
 
 
-  <meta name="description" content="前言什么是 Hexo？Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 本教程使用的软件版本：  win10（1903 版）  git（2.22）  node（10.15.3）  hexo（3.9.0）   搭建步骤安装git访问git官网下载后完成安装，完成后右键会有git bash命令行出现，以后">
-<meta name="keywords" content="博客,零基础,个人网站,hexo">
+  <meta name="description" content="基本介绍散列表（Hash table，也叫哈希表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。   google上机题目有一个公司,当有新的员工来报道时,要求将该员工的信息加入(id,性别,年龄,名字,住址..),当输入该员工的id 时,要求查找到该员工">
+<meta name="keywords" content="数据结构,哈希表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零开始搭建个人博客（Hexo篇）">
-<meta property="og:url" content="https://lijingyuan.top/2019/07/08/从零开始搭建个人博客（Hexo篇）/index.html">
+<meta property="og:title" content="重学Java数据结构和算法（哈希表）">
+<meta property="og:url" content="https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（哈希表）/index.html">
 <meta property="og:site_name" content="丽璟园">
-<meta property="og:description" content="前言什么是 Hexo？Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 本教程使用的软件版本：  win10（1903 版）  git（2.22）  node（10.15.3）  hexo（3.9.0）   搭建步骤安装git访问git官网下载后完成安装，完成后右键会有git bash命令行出现，以后">
+<meta property="og:description" content="基本介绍散列表（Hash table，也叫哈希表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。   google上机题目有一个公司,当有新的员工来报道时,要求将该员工的信息加入(id,性别,年龄,名字,住址..),当输入该员工的id 时,要求查找到该员工">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/gitVersion.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/node-v.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/cnpm.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/install.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/hexo-v.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/init.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/dir.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/hexoStart.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/start.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/demo.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/generate.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/first.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/res.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/hexo-deployer-git.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/config.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/deloy.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/done.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/github.png">
-<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/over1.png">
-<meta property="og:updated_time" content="2019-07-16T01:19:38.277Z">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/haxijieshao1.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/haxijieshao2.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/haxifenxi.jpg">
+<meta property="og:updated_time" content="2019-07-21T16:39:38.164Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从零开始搭建个人博客（Hexo篇）">
-<meta name="twitter:description" content="前言什么是 Hexo？Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 本教程使用的软件版本：  win10（1903 版）  git（2.22）  node（10.15.3）  hexo（3.9.0）   搭建步骤安装git访问git官网下载后完成安装，完成后右键会有git bash命令行出现，以后">
-<meta name="twitter:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/gitVersion.png">
+<meta name="twitter:title" content="重学Java数据结构和算法（哈希表）">
+<meta name="twitter:description" content="基本介绍散列表（Hash table，也叫哈希表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。   google上机题目有一个公司,当有新的员工来报道时,要求将该员工的信息加入(id,性别,年龄,名字,住址..),当输入该员工的id 时,要求查找到该员工">
+<meta name="twitter:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/haxijieshao1.jpg">
 
 
 
@@ -155,7 +139,7 @@ daovoice('update');
 
   
   
-  <link rel="canonical" href="https://lijingyuan.top/2019/07/08/从零开始搭建个人博客（Hexo篇）/">
+  <link rel="canonical" href="https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（哈希表）/">
 
 
 
@@ -165,7 +149,7 @@ daovoice('update');
   };
 </script>
 
-  <title>从零开始搭建个人博客（Hexo篇） | 丽璟园</title>
+  <title>重学Java数据结构和算法（哈希表） | 丽璟园</title>
   
 
 
@@ -421,7 +405,7 @@ daovoice('update');
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lijingyuan.top/2019/07/08/从零开始搭建个人博客（Hexo篇）/">
+    <link itemprop="mainEntityOfPage" href="https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（哈希表）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kangjinghang">
@@ -438,7 +422,7 @@ daovoice('update');
 
         
         
-          <h1 class="post-title" itemprop="name headline">从零开始搭建个人博客（Hexo篇）
+          <h1 class="post-title" itemprop="name headline">重学Java数据结构和算法（哈希表）
 
               
             
@@ -464,7 +448,7 @@ daovoice('update');
                 
               
 
-              <time title="创建时间：2019-07-08 14:34:21" itemprop="dateCreated datePublished" datetime="2019-07-08T14:34:21+08:00">2019-07-08</time>
+              <time title="创建时间：2019-07-21 23:14:27" itemprop="dateCreated datePublished" datetime="2019-07-21T23:14:27+08:00">2019-07-21</time>
             </span>
           
 
@@ -479,7 +463,7 @@ daovoice('update');
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-16 09:19:38" itemprop="dateModified" datetime="2019-07-16T09:19:38+08:00">2019-07-16</time>
+                <time title="修改时间：2019-07-22 00:39:38" itemprop="dateModified" datetime="2019-07-22T00:39:38+08:00">2019-07-22</time>
               </span>
             
           
@@ -493,7 +477,7 @@ daovoice('update');
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构和算法/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a></span>
 
                 
                 
@@ -528,7 +512,7 @@ daovoice('update');
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.7k</span>
+              <span title="本文字数">5.4k</span>
             </span>
           
 
@@ -540,7 +524,7 @@ daovoice('update');
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">2 分钟</span>
+              <span title="阅读时长">5 分钟</span>
             </span>
           
 
@@ -559,73 +543,19 @@ daovoice('update');
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="什么是-Hexo？"><a href="#什么是-Hexo？" class="headerlink" title="什么是 Hexo？"></a>什么是 Hexo？</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<p>本教程使用的软件版本：</p>
+        <h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>散列表（Hash table，也叫哈希表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。</p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/haxijieshao1.jpg" alt="哈希介绍"></p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/haxijieshao2.jpg" alt="哈希介绍"></p>
+<h2 id="google上机题目"><a href="#google上机题目" class="headerlink" title="google上机题目"></a>google上机题目</h2><p>有一个公司,当有新的员工来报道时,要求将该员工的信息加入(id,性别,年龄,名字,住址..),当输入该员工的id 时,要求查找到该员工的所有信息.<br>要求:</p>
 <ul>
-<li><p>win10（1903 版）</p>
-</li>
-<li><p>git（2.22）</p>
-</li>
-<li><p>node（10.15.3）</p>
-</li>
-<li><p>hexo（3.9.0）</p>
-</li>
+<li>不使用数据库,,速度越快越好=&gt;哈希表(散列)</li>
+<li>添加时，保证按照id 从低到高插入[课后思考：如果id 不是从低到高插入，但要求各条链表仍是从低到高，怎么解决?</li>
+<li>使用链表来实现哈希表, 该链表不带表头[即: 链表的第一个结点就存放雇员信息]</li>
+<li>思路分析并画出示意图</li>
 </ul>
-<h1 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h1><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>访问<a href="https://gitforwindows.org/" target="_blank" rel="noopener">git官网</a>下载后完成安装，完成后右键会有git bash命令行出现，以后用这个命令行工具来操作git。推荐廖雪峰老师的<a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">git教程</a>，可以用作入门。</p>
-<p>安装后输入查看版本命令<code>git --version</code>来验证git是否已正常安装。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/gitVersion.png" alt="git版本"></p>
-<h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><p>访问<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">node官网</a>下载适合版本完成安装，完成后输入查看版本命令<code>node-v</code>和<code>npm-v</code>来验证git是否已正常安装。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/node-v.png" alt="node版本"></p>
-<h2 id="安装cnpm"><a href="#安装cnpm" class="headerlink" title="安装cnpm"></a>安装cnpm</h2><p>因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，所以需要安装cnpm。</p>
-<p>输入如下命令：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/haxifenxi.jpg" alt="哈希分析"></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashTabDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建哈希表</span></span><br><span class="line">        HashTab hashTab = <span class="keyword">new</span> HashTab(<span class="number">7</span>);</span><br><span class="line">        <span class="comment">//写一个简单的菜单</span></span><br><span class="line">        String key = <span class="string">""</span>;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"add: 添加雇员"</span>);</span><br><span class="line">            System.out.println(<span class="string">"list: 显示雇员"</span>);</span><br><span class="line">            System.out.println(<span class="string">"find: 查找雇员"</span>);</span><br><span class="line">            System.out.println(<span class="string">"exit: 退出系统"</span>);</span><br><span class="line">            key = scanner.next();</span><br><span class="line">            <span class="keyword">switch</span> (key) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"add"</span>:</span><br><span class="line">                    System.out.println(<span class="string">"输入id"</span>);</span><br><span class="line">                    <span class="keyword">int</span> id = scanner.nextInt();</span><br><span class="line">                    System.out.println(<span class="string">"输入名字"</span>);</span><br><span class="line">                    String name = scanner.next();</span><br><span class="line">                    <span class="comment">//创建雇员</span></span><br><span class="line">                    Emp emp = <span class="keyword">new</span> Emp(id, name);</span><br><span class="line">                    hashTab.add(emp);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"list"</span>:</span><br><span class="line">                    hashTab.list();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"find"</span>:</span><br><span class="line">                    System.out.println(<span class="string">"请输入要查找的id"</span>);</span><br><span class="line">                    id = scanner.nextInt();</span><br><span class="line">                    hashTab.findEmpById(id);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"exit"</span>:</span><br><span class="line">                    scanner.close();</span><br><span class="line">                    System.exit(<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建HashTab 管理多条链表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashTab</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> EmpLinkedList[] empLinkedListArray;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 构造器</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> size size</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HashTab</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.size = size;</span><br><span class="line">        <span class="comment">// 初始化empLinkedListArray</span></span><br><span class="line">        empLinkedListArray = <span class="keyword">new</span> EmpLinkedList[size];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            empLinkedListArray[i] = <span class="keyword">new</span> EmpLinkedList();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加雇员</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> emp emp</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Emp emp)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//根据员工的id ,得到该员工应当添加到哪条链表</span></span><br><span class="line">        <span class="keyword">int</span> empLinkedListNo = hashFun(emp.id);</span><br><span class="line">        <span class="comment">//将emp 添加到对应的链表中</span></span><br><span class="line">        empLinkedListArray[empLinkedListNo].add(emp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 遍历所有的链表,遍历hashtab</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">list</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            empLinkedListArray[i].list(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据输入的id,查找雇员</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">findEmpById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 使用散列函数确定到哪条链表查找</span></span><br><span class="line">        <span class="keyword">int</span> empLinkedListNo = hashFun(id);</span><br><span class="line">        Emp emp = empLinkedListArray[empLinkedListNo].findEmpById(id);</span><br><span class="line">        <span class="keyword">if</span> (emp != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 找到</span></span><br><span class="line">            System.out.printf(<span class="string">"在第%d条链表中找到雇员id = %d\n"</span>, (empLinkedListNo + <span class="number">1</span>), id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"在哈希表中，没有找到该雇员~"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 编写散列函数, 使用一个简单取模法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashFun</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id % size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Emp</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * next 默认为null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> Emp next;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Emp</span><span class="params">(<span class="keyword">int</span> id, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建EmpLinkedList ,表示链表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EmpLinkedList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 头指针，执行第一个Emp,因此我们这个链表的head 是直接指向第一个Emp</span></span><br><span class="line"><span class="comment">     * 默认null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Emp head;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加雇员到链表</span></span><br><span class="line"><span class="comment">     * 说明</span></span><br><span class="line"><span class="comment">     * 1. 假定，当添加雇员时，id 是自增长，即id 的分配总是从小到大</span></span><br><span class="line"><span class="comment">     * 因此我们将该雇员直接加入到本链表的最后即可</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Emp emp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            head = emp;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果不是第一个雇员，则使用一个辅助的指针，帮助定位到最后</span></span><br><span class="line">        Emp curEmp = head;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (curEmp.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 说明到链表最后</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 后移</span></span><br><span class="line">            curEmp = curEmp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 退出时直接将emp 加入链表</span></span><br><span class="line">        curEmp.next = emp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 遍历链表的雇员信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">list</span><span class="params">(<span class="keyword">int</span> no)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 说明链表为空</span></span><br><span class="line">            System.out.println(<span class="string">"第"</span> + (no + <span class="number">1</span>) + <span class="string">" 链表为空"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.print(<span class="string">"第"</span> + (no + <span class="number">1</span>) + <span class="string">" 链表的信息为"</span>);</span><br><span class="line">        <span class="comment">// 辅助指针</span></span><br><span class="line">        Emp curEmp = head;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            System.out.printf(<span class="string">" =&gt; id=%d name=%s\t"</span>, curEmp.id, curEmp.name);</span><br><span class="line">            <span class="comment">// 说明curEmp 已经是最后结点</span></span><br><span class="line">            <span class="keyword">if</span> (curEmp.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 后移，遍历</span></span><br><span class="line">            curEmp = curEmp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据id 查找雇员</span></span><br><span class="line"><span class="comment">     * 如果查找到，就返回Emp, 如果没有找到，就返回null</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id id</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Emp <span class="title">findEmpById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//判断链表是否为空</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"链表为空"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//辅助指针</span></span><br><span class="line">        Emp curEmp = head;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">//找到</span></span><br><span class="line">            <span class="keyword">if</span> (curEmp.id == id) &#123;</span><br><span class="line">                <span class="comment">//这时curEmp 就指向要查找的雇员</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//退出</span></span><br><span class="line">            <span class="comment">//说明遍历当前链表没有找到该雇员</span></span><br><span class="line">            <span class="keyword">if</span> (curEmp.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">                curEmp = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//以后</span></span><br><span class="line">            curEmp = curEmp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> curEmp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>安装完成后输入查看版本命令<code>cpnm -v</code>验证是否已正常安装。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/cnpm.png" alt="cpmn版本"></p>
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>输入如下命令：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/install.png" alt="install"></p>
-<p>安装完成后依然通过查看版本命令<code>hexo -v</code>来验证是否已正常安装完成。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/hexo-v.png" alt="hexo版本"></p>
-<p>安装完成后开始进行初始化工作。</p>
-<p>在本地磁盘建立博客文件夹，以我为例，在G盘建立blog文件夹。然后通过git bash或者cmd窗口进入到该文件夹，输入<code>hexo init</code>命令。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/init.png" alt="hexo init"></p>
-<p>新建完成后可以发现hexo在文件夹下自动建立了如下目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/dir.png" alt="hexo dir"></p>
-<ul>
-<li>_config.yml：网站的 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">配置</a> 信息，我们在此会配置大部分的参数。 </li>
-<li>scaffolds：模版文件夹。当新建文章时，hexo会根据 scaffold 来建立文件。</li>
-<li>source：资源文件夹。是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。</li>
-<li>themes：主题文件夹。hexo会根据主题来生成静态页面。</li>
-</ul>
-<p>到此，安装基本完成了，下面我们来执行<code>hexo s</code>命令在本地启动看一下效果。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/hexoStart.png" alt="hexo"></p>
-<p>提示我们启动在了4000端口，可以通过<code>Ctrl+C</code>命令来终止服务。在浏览器输入<code>http://localhost:4000</code>就能看到生成的博客了。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/start.png" alt="hexo start"></p>
-<h1 id="写下第一篇文章"><a href="#写下第一篇文章" class="headerlink" title="写下第一篇文章"></a>写下第一篇文章</h1><p>下面介绍一下怎样完成一篇文章并发布。</p>
-<p>在 blog 目录下输入<code>hexo n &quot;我的第一篇文章&quot;</code>命令来新建一篇文件。然后<code>cd</code>到 source/_post 目录，会发现hexo已经帮我们新建了<code>我的第一篇文章.md</code>文件，我们通过typora编辑该文件，完成第一篇文章。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/demo.png" alt="demo"></p>
-<p>下面回到blog目录，依次执行<code>hexo clean</code>和<code>hexo generate</code>命令来生成刚才编写的文章。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/generate.png" alt="generate"></p>
-<p>完成后，还是执行<code>hexo s</code>命令在本地查看一下我们刚才写的文章。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/first.png" alt="first"></p>
-<h1 id="将hexo部署到github"><a href="#将hexo部署到github" class="headerlink" title="将hexo部署到github"></a>将hexo部署到github</h1><h2 id="在github新建仓库。"><a href="#在github新建仓库。" class="headerlink" title="在github新建仓库。"></a>在github新建仓库。</h2><p>注意，仓库名称应该是用户名+.github.io，因为只有这样，部署到GitHub page时才会被识别。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/res.png" alt="res"></p>
-<h2 id="本地安装hexo的git插件"><a href="#本地安装hexo的git插件" class="headerlink" title="本地安装hexo的git插件"></a>本地安装hexo的git插件</h2><p>执行<code>cpnm install hexo-deployer-git --save</code>命令完成安装。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/hexo-deployer-git.png" alt="hexo-deployer-git"></p>
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>修改 blog 目录下的 _config.yml 文件，将git仓库地址和分支信息填上。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/config.png" alt="config"></p>
-<h2 id="发布到github"><a href="#发布到github" class="headerlink" title="发布到github"></a>发布到github</h2><p>执行<code>hexo d</code>命令将本地文章同步到github。第一次需要输入github账号和密码。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/deloy.png" alt="deploy"></p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/done.png" alt="done"></p>
-<p>执行完成后，可以看到已经同步到远端了。</p>
-<p>到github仓库中查看一下，同样也发现文章已经同步过来了。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/github.png" alt="github"></p>
-<p>在浏览器输入<code>http://yourname.github.io</code>就能看到你的博客了。</p>
-<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/hexo/over1.png" alt="github"></p>
 
       
     </div>
@@ -692,7 +622,7 @@ daovoice('update');
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://lijingyuan.top/2019/07/08/从零开始搭建个人博客（Hexo篇）/" title="从零开始搭建个人博客（Hexo篇）">https://lijingyuan.top/2019/07/08/从零开始搭建个人博客（Hexo篇）/</a>
+    <a href="https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（哈希表）/" title="重学Java数据结构和算法（哈希表）">https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（哈希表）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -708,13 +638,9 @@ daovoice('update');
         
         <div class="post-tags">
           
-            <a href="/tags/博客/" rel="tag"># 博客</a>
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
           
-            <a href="/tags/零基础/" rel="tag"># 零基础</a>
-          
-            <a href="/tags/个人网站/" rel="tag"># 个人网站</a>
-          
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/哈希表/" rel="tag"># 哈希表</a>
           
         </div>
       
@@ -748,15 +674,15 @@ daovoice('update');
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/19/重学Java数据结构和算法（查找算法）/" rel="next" title="重学Java数据结构和算法（查找算法）">
+                <i class="fa fa-chevron-left"></i> 重学Java数据结构和算法（查找算法）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/13/重学Java数据结构和算法（排序算法）/" rel="prev" title="重学Java数据结构和算法（排序算法）">
-                重学Java数据结构和算法（排序算法） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -978,7 +904,7 @@ daovoice('update');
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Hexo？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是 Hexo？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建步骤"><span class="nav-number">2.</span> <span class="nav-text">搭建步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装git"><span class="nav-number">2.1.</span> <span class="nav-text">安装git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装node"><span class="nav-number">2.2.</span> <span class="nav-text">安装node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装cnpm"><span class="nav-number">2.3.</span> <span class="nav-text">安装cnpm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">2.4.</span> <span class="nav-text">安装hexo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写下第一篇文章"><span class="nav-number">3.</span> <span class="nav-text">写下第一篇文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将hexo部署到github"><span class="nav-number">4.</span> <span class="nav-text">将hexo部署到github</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在github新建仓库。"><span class="nav-number">4.1.</span> <span class="nav-text">在github新建仓库。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地安装hexo的git插件"><span class="nav-number">4.2.</span> <span class="nav-text">本地安装hexo的git插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置文件"><span class="nav-number">4.3.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布到github"><span class="nav-number">4.4.</span> <span class="nav-text">发布到github</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本介绍"><span class="nav-number">1.</span> <span class="nav-text">基本介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#google上机题目"><span class="nav-number">1.1.</span> <span class="nav-text">google上机题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">1.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
             
 
           </div>
