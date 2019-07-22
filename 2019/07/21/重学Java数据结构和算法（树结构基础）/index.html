@@ -130,16 +130,26 @@ daovoice('update');
  </script>
 
 
-  <meta name="description" content="不安便求安，安之又思变。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="丽璟园">
-<meta property="og:url" content="https://lijingyuan.top/archives/2019/07/index.html">
+  <meta name="description" content="二叉树为什么需要树这种数据结构数组存储方式的分析 优点：通过下标方式访问元素，速度快。对于有序数组，还可使用二分查找提高检索速度。 缺点：如果要检索具体某个值，或者插入值(按一定顺序)会整体移动，效率较低。  操作示意图：  链式存储方式的分析 优点：在一定程度上对数组存储方式有优化(比如：插入一个数值节点，只需要将插入节点，链接到链表中即可，删除效率也很好)。 缺点：在进行检索时，效率仍然较低，">
+<meta name="keywords" content="数据结构,树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学Java数据结构和算法（树结构基础）">
+<meta property="og:url" content="https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（树结构基础）/index.html">
 <meta property="og:site_name" content="丽璟园">
-<meta property="og:description" content="不安便求安，安之又思变。">
+<meta property="og:description" content="二叉树为什么需要树这种数据结构数组存储方式的分析 优点：通过下标方式访问元素，速度快。对于有序数组，还可使用二分查找提高检索速度。 缺点：如果要检索具体某个值，或者插入值(按一定顺序)会整体移动，效率较低。  操作示意图：  链式存储方式的分析 优点：在一定程度上对数组存储方式有优化(比如：插入一个数值节点，只需要将插入节点，链接到链表中即可，删除效率也很好)。 缺点：在进行检索时，效率仍然较低，">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/shuzucaozuo.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/lianbiaocaozuo.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/shucaozuo.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/shushiyi.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/erchashiyi.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/manercha.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/wanquanercha.jpg">
+<meta property="og:updated_time" content="2019-07-22T06:19:44.326Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="丽璟园">
-<meta name="twitter:description" content="不安便求安，安之又思变。">
+<meta name="twitter:title" content="重学Java数据结构和算法（树结构基础）">
+<meta name="twitter:description" content="二叉树为什么需要树这种数据结构数组存储方式的分析 优点：通过下标方式访问元素，速度快。对于有序数组，还可使用二分查找提高检索速度。 缺点：如果要检索具体某个值，或者插入值(按一定顺序)会整体移动，效率较低。  操作示意图：  链式存储方式的分析 优点：在一定程度上对数组存储方式有优化(比如：插入一个数值节点，只需要将插入节点，链接到链表中即可，删除效率也很好)。 缺点：在进行检索时，效率仍然较低，">
+<meta name="twitter:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/shuzucaozuo.jpg">
 
 
 
@@ -149,7 +159,7 @@ daovoice('update');
 
   
   
-  <link rel="canonical" href="https://lijingyuan.top/archives/2019/07/">
+  <link rel="canonical" href="https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（树结构基础）/">
 
 
 
@@ -159,7 +169,7 @@ daovoice('update');
   };
 </script>
 
-  <title>归档 | 丽璟园</title>
+  <title>重学Java数据结构和算法（树结构基础） | 丽璟园</title>
   
 
 
@@ -217,7 +227,7 @@ daovoice('update');
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -318,7 +328,7 @@ daovoice('update');
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -395,244 +405,377 @@ daovoice('update');
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（树结构基础）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kangjinghang">
+      <meta itemprop="description" content="不安便求安，安之又思变。">
+      <meta itemprop="image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/static/headImg-li.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丽璟园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">重学Java数据结构和算法（树结构基础）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-21 14:02:36" itemprop="dateCreated datePublished" datetime="2019-07-21T14:02:36+08:00">2019-07-21</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-22 14:19:44" itemprop="dateModified" datetime="2019-07-22T14:19:44+08:00">2019-07-22</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构和算法/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/07/21/重学Java数据结构和算法（树结构基础）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/21/重学Java数据结构和算法（树结构基础）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">650</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      <span class="archive-page-counter">
+      
+
+      
+        <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="为什么需要树这种数据结构"><a href="#为什么需要树这种数据结构" class="headerlink" title="为什么需要树这种数据结构"></a>为什么需要树这种数据结构</h2><h3 id="数组存储方式的分析"><a href="#数组存储方式的分析" class="headerlink" title="数组存储方式的分析"></a>数组存储方式的分析</h3><ul>
+<li>优点：通过下标方式访问元素，速度快。对于有序数组，还可使用二分查找提高检索速度。</li>
+<li>缺点：如果要检索具体某个值，或者插入值(按一定顺序)会整体移动，效率较低。</li>
+</ul>
+<p><strong>操作示意图：</strong></p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/shuzucaozuo.jpg" alt="数组操作示意图"></p>
+<h3 id="链式存储方式的分析"><a href="#链式存储方式的分析" class="headerlink" title="链式存储方式的分析"></a>链式存储方式的分析</h3><ul>
+<li>优点：在一定程度上对数组存储方式有优化(比如：插入一个数值节点，只需要将插入节点，链接到链表中即可，删除效率也很好)。</li>
+<li>缺点：在进行检索时，效率仍然较低，比如(检索某个值，需要从头节点开始遍历) 。</li>
+</ul>
+<p><strong>操作示意图：</strong></p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/lianbiaocaozuo.jpg" alt="链表操作示意图"></p>
+<h3 id="树存储方式的分析"><a href="#树存储方式的分析" class="headerlink" title="树存储方式的分析"></a>树存储方式的分析</h3><p>能提高数据存储，读取的效率, 比如利用二叉排序树(Binary Sort Tree)，既可以保证数据的检索速度，同时也可以保证数据的插入，删除，修改的速度。</p>
+<p><strong>案例: [7, 3, 10, 1, 5, 9, 12]</strong></p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/shucaozuo.jpg" alt="树操作示意图"></p>
+<h2 id="树示意图"><a href="#树示意图" class="headerlink" title="树示意图"></a>树示意图</h2><p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/shushiyi.jpg" alt="树示意图"></p>
+<p>树的常用术语(结合示意图理解):</p>
+<ul>
+<li>节点</li>
+<li>根节点</li>
+<li>父节点</li>
+<li>子节点</li>
+<li>叶子节点(没有子节点的节点)</li>
+<li>节点的权(节点值)</li>
+<li>路径(从root 节点找到该节点的路线)</li>
+<li>层</li>
+<li>子树</li>
+<li>树的高度(最大层数)</li>
+<li>森林:多颗子树构成森林</li>
+</ul>
+<h2 id="二叉树的概念"><a href="#二叉树的概念" class="headerlink" title="二叉树的概念"></a>二叉树的概念</h2><ul>
+<li>树有很多种，每个节点最多只能有两个子节点的一种形式称为二叉树。</li>
+<li>二叉树的子节点分为左节点和右节点。</li>
+<li><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/erchashiyi.jpg" alt="二叉树示意图"></li>
+<li>如果该二叉树的所有叶子节点都在最后一层，并且结点总数= 2^n -1 , n 为层数，则我们称为满二叉树。</li>
+</ul>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/manercha.jpg" alt="满二叉树示意图"></p>
+<ul>
+<li><p>如果该二叉树的所有叶子节点都在最后一层或者倒数第二层，而且最后一层的叶子节点在左边连续，倒数第二层的叶子节点在右边连续，我们称为完全二叉树。</p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/wanquanercha.jpg" alt="完全二叉树示意图"></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+    
+    <div>
         
+            <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
         
+      
+      <div style="display: inline-block">
+        <img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/static/wechat_pay.jpg" alt="kangjinghang 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>kangjinghang</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（树结构基础）/" title="重学Java数据结构和算法（树结构基础）">https://lijingyuan.top/2019/07/21/重学Java数据结构和算法（树结构基础）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
         
           
         
-        嗯..! 目前共计 5 篇日志。 继续努力。
-      </span>
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+        </div>
       
 
       
+      
+        <div class="post-widgets">
+        
 
-        
-        
         
 
         
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+            
           </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/21/重学Java数据结构和算法（哈希表）/" itemprop="url">
-            
-              <span itemprop="name">重学Java数据结构和算法（哈希表）</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-21T23:14:27+08:00" content="2019-07-21">
-          07-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/21/重学Java数据结构和算法（树结构基础）/" itemprop="url">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span itemprop="name">重学Java数据结构和算法（树结构基础）</span>
+              <a href="/2019/07/19/重学Java数据结构和算法（查找算法）/" rel="next" title="重学Java数据结构和算法（查找算法）">
+                <i class="fa fa-chevron-left"></i> 重学Java数据结构和算法（查找算法）
+              </a>
             
-          </a>
-        
-      </h2>
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-21T14:02:36+08:00" content="2019-07-21">
-          07-21
-        </time>
-      </div>
+          <span class="post-nav-divider"></span>
 
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/21/重学Java数据结构和算法（哈希表）/" rel="prev" title="重学Java数据结构和算法（哈希表）">
+                重学Java数据结构和算法（哈希表） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/19/重学Java数据结构和算法（查找算法）/" itemprop="url">
-            
-              <span itemprop="name">重学Java数据结构和算法（查找算法）</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-19T15:59:46+08:00" content="2019-07-19">
-          07-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/13/重学Java数据结构和算法（排序算法）/" itemprop="url">
-            
-              <span itemprop="name">重学Java数据结构和算法（排序算法）</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-13T13:44:26+08:00" content="2019-07-13">
-          07-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/08/从零开始搭建个人博客（Hexo篇）/" itemprop="url">
-            
-              <span itemprop="name">从零开始搭建个人博客（Hexo篇）</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-08T14:34:21+08:00" content="2019-07-08">
-          07-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
+  </div></article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -652,8 +795,17 @@ daovoice('update');
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -812,6 +964,23 @@ daovoice('update');
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉树"><span class="nav-number">1.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要树这种数据结构"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要树这种数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组存储方式的分析"><span class="nav-number">1.1.1.</span> <span class="nav-text">数组存储方式的分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链式存储方式的分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">链式存储方式的分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树存储方式的分析"><span class="nav-number">1.1.3.</span> <span class="nav-text">树存储方式的分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树示意图"><span class="nav-number">1.2.</span> <span class="nav-text">树示意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树的概念"><span class="nav-number">1.3.</span> <span class="nav-text">二叉树的概念</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -998,6 +1167,10 @@ daovoice('update');
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   
 
@@ -1039,6 +1212,8 @@ daovoice('update');
 
 
 
+
+  
 
 
   
