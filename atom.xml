@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lijingyuan.top/"/>
-  <updated>2019-07-23T07:52:20.350Z</updated>
+  <updated>2019-07-23T09:27:36.494Z</updated>
   <id>https://lijingyuan.top/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重学Java数据结构和算法（树结构应用）</title>
+    <link href="https://lijingyuan.top/%E9%87%8D%E5%AD%A6Java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E6%A0%91%E7%BB%93%E6%9E%84%E5%BA%94%E7%94%A8%EF%BC%89/"/>
+    <id>https://lijingyuan.top/重学Java数据结构和算法（树结构应用）/</id>
+    <published>2019-07-07T12:12:17.000Z</published>
+    <updated>2019-07-23T09:27:36.494Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="赫夫曼树"><a href="#赫夫曼树" class="headerlink" title="赫夫曼树"></a>赫夫曼树</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><ul><li>给定 n 个权值作为 n 个叶子结点，构造一棵二叉树，若该树的带权路径长度(wpl)达到最小，称这样的二叉树为最优二叉树，也称为哈夫曼树(Huffman Tree), 还有的书翻译为霍夫曼树。</li><li>赫夫曼树是带权路径长度最短的树，权值较大的结点离根较近。</li></ul><h2 id="概念说明"><a href="#概念说明" class="headerlink" title="概念说明"></a>概念说明</h2><ul><li>路径和路径长度：在一棵树中，从一个结点往下可以达到的孩子或孙子结点之间的通路，称为路径。通路中分支的数目称为路径长度。若规定根结点的层数为1，则从根结点到第L 层结点的路径长度为L-1。</li><li>结点的权及带权路径长度：若将树中结点赋给一个有着某种含义的数值，则这个数值称为该结点的权。结点的带权路径长度为：从根结点到该结点之间的路径长度与该结点的权的乘积。</li><li>树的带权路径长度：树的带权路径长度规定为所有叶子结点的带权路径长度之和，记为WPL(weighted path length) ,权值越大的结点离根结点越近的二叉树才是最优二叉树。</li><li>WPL 最小的就是赫夫曼树。</li></ul><p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/huffmanjieshao.jpg" alt="赫夫曼树介绍"></p><h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>给定一个数列{13, 7, 8, 3, 29, 6, 1}，要求转成一颗赫夫曼树。</p><p><strong>步骤：</strong></p><ol><li>从小到大进行排序, 将每一个数据，每个数据都是一个节点， 每个节点可以看成是一颗最简单的二叉树。</li><li>取出根节点权值最小的两颗二叉树。</li><li>组成一颗新的二叉树, 该新的二叉树的根节点的权值是前面两颗二叉树根节点权值的和。</li><li>再将这颗新的二叉树，以根节点的权值大小再次排序， 不断重复1-2-3-4 的步骤，直到数列中，所有的数据都被处理，就得到一颗赫夫曼树。</li></ol><p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/huffmantujie.jpg" alt="赫夫曼树图解"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;赫夫曼树&quot;&gt;&lt;a href=&quot;#赫夫曼树&quot; class=&quot;headerlink&quot; title=&quot;赫夫曼树&quot;&gt;&lt;/a&gt;赫夫曼树&lt;/h1&gt;&lt;h2 id=&quot;基本介绍&quot;&gt;&lt;a href=&quot;#基本介绍&quot; class=&quot;headerlink&quot; title=&quot;基本介绍&quot;&gt;&lt;/a
+      
+    
+    </summary>
+    
+      <category term="数据结构和算法" scheme="https://lijingyuan.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="https://lijingyuan.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="树" scheme="https://lijingyuan.top/tags/%E6%A0%91/"/>
+    
+      <category term="赫夫曼树" scheme="https://lijingyuan.top/tags/%E8%B5%AB%E5%A4%AB%E6%9B%BC%E6%A0%91/"/>
+    
+      <category term="赫夫曼编码" scheme="https://lijingyuan.top/tags/%E8%B5%AB%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/"/>
+    
+      <category term="二叉排序树" scheme="https://lijingyuan.top/tags/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/"/>
+    
+      <category term="平衡二叉树" scheme="https://lijingyuan.top/tags/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+      <category term="AVL 树" scheme="https://lijingyuan.top/tags/AVL-%E6%A0%91/"/>
+    
+  </entry>
   
   <entry>
     <title>重学Java数据结构和算法（树结构基础）</title>
