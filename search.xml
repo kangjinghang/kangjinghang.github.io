@@ -22,6 +22,9 @@
       <tags>
         <tag>数据结构</tag>
         <tag>树</tag>
+        <tag>二叉树</tag>
+        <tag>顺序二叉树</tag>
+        <tag>线索化二叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -35,6 +38,9 @@
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>查找算法</tag>
+        <tag>二分查找算法</tag>
+        <tag>插值查找算法</tag>
+        <tag>斐波那契查找算法</tag>
       </tags>
   </entry>
   <entry>
@@ -48,6 +54,13 @@
         <tag>数据结构</tag>
         <tag>算法</tag>
         <tag>排序算法</tag>
+        <tag>冒泡排序</tag>
+        <tag>选择排序</tag>
+        <tag>插入排序</tag>
+        <tag>希尔排序</tag>
+        <tag>快速排序</tag>
+        <tag>归并排序</tag>
+        <tag>堆排序</tag>
       </tags>
   </entry>
   <entry>
