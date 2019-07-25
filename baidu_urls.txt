@@ -1,4 +1,4 @@
-https://lijingyuan.top/重学Java数据结构和算法（树结构应用）/
+https://lijingyuan.top/重学Java数据结构和算法（树结构进阶）/
 https://lijingyuan.top/重学Java数据结构和算法（树结构基础）/
 https://lijingyuan.top/重学Java数据结构和算法（查找算法）/
 https://lijingyuan.top/重学Java数据结构和算法（哈希表）/
