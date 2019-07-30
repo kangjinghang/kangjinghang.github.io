@@ -12,4 +12,4 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 Sitemap: https://lijingyuan.top/sitemap.xml
-Sitemap: https://lijingyuan.top/baidusitemap.xml
+Sitemap: http://lijingyuan.top/baidusitemap.xml
