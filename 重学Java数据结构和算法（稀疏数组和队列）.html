@@ -130,16 +130,22 @@ daovoice('update');
  </script>
 
 
-  <meta name="description" content="不安便求安，安之又思变。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="丽璟园">
-<meta property="og:url" content="https://lijingyuan.top/tags/博客/index.html">
+  <meta name="description" content="稀疏数组问题导入编写的五子棋程序中，有存盘退出和续上盘的功能。  分析问题：因为该二维数组的很多值是默认值0, 因此记录了很多没有意义的数据 -&amp;gt; 稀疏数组。 基本介绍当一个数组中大部分元素为０，或者为同一个值的数组时，可以使用稀疏数组来保存该数组。 稀疏数组的处理方法是：  记录数组一共有几行几列，有多少个不同的值。  把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规">
+<meta name="keywords" content="数据结构,稀疏数组,队列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学Java数据结构和算法（稀疏数组和队列）">
+<meta property="og:url" content="https://lijingyuan.top/重学Java数据结构和算法（稀疏数组和队列）.html">
 <meta property="og:site_name" content="丽璟园">
-<meta property="og:description" content="不安便求安，安之又思变。">
+<meta property="og:description" content="稀疏数组问题导入编写的五子棋程序中，有存盘退出和续上盘的功能。  分析问题：因为该二维数组的很多值是默认值0, 因此记录了很多没有意义的数据 -&amp;gt; 稀疏数组。 基本介绍当一个数组中大部分元素为０，或者为同一个值的数组时，可以使用稀疏数组来保存该数组。 稀疏数组的处理方法是：  记录数组一共有几行几列，有多少个不同的值。  把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/xishudaoru.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/xishujieshao.jpg">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/xishusilu.jpg">
+<meta property="og:updated_time" content="2019-07-31T02:52:46.366Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="丽璟园">
-<meta name="twitter:description" content="不安便求安，安之又思变。">
+<meta name="twitter:title" content="重学Java数据结构和算法（稀疏数组和队列）">
+<meta name="twitter:description" content="稀疏数组问题导入编写的五子棋程序中，有存盘退出和续上盘的功能。  分析问题：因为该二维数组的很多值是默认值0, 因此记录了很多没有意义的数据 -&amp;gt; 稀疏数组。 基本介绍当一个数组中大部分元素为０，或者为同一个值的数组时，可以使用稀疏数组来保存该数组。 稀疏数组的处理方法是：  记录数组一共有几行几列，有多少个不同的值。  把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规">
+<meta name="twitter:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/xishudaoru.jpg">
 
 
 
@@ -149,7 +155,7 @@ daovoice('update');
 
   
   
-  <link rel="canonical" href="https://lijingyuan.top/tags/博客/">
+  <link rel="canonical" href="https://lijingyuan.top/重学Java数据结构和算法（稀疏数组和队列）">
 
 
 
@@ -159,7 +165,7 @@ daovoice('update');
   };
 </script>
 
-  <title>标签: 博客 | 丽璟园</title>
+  <title>重学Java数据结构和算法（稀疏数组和队列） | 丽璟园</title>
   
 
 
@@ -217,7 +223,7 @@ daovoice('update');
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -286,7 +292,7 @@ daovoice('update');
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -395,83 +401,344 @@ daovoice('update');
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>博客<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lijingyuan.top/重学Java数据结构和算法（稀疏数组和队列）.html">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kangjinghang">
+      <meta itemprop="description" content="不安便求安，安之又思变。">
+      <meta itemprop="image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/static/headImg-li.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丽璟园">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/从零开始搭建个人博客（Hexo篇）.html" itemprop="url">
-            
-              <span itemprop="name">从零开始搭建个人博客（Hexo篇）</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">重学Java数据结构和算法（稀疏数组和队列）
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-08T14:34:21+08:00" content="2019-06-08">
-          06-08
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-31 09:51:56 / 修改时间：10:52:46" itemprop="dateCreated datePublished" datetime="2019-07-31T09:51:56+08:00">2019-07-31</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构和算法/" itemprop="url" rel="index"><span itemprop="name">数据结构和算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/重学Java数据结构和算法（稀疏数组和队列）.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/重学Java数据结构和算法（稀疏数组和队列）.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">2.9k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">3 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h1><h2 id="问题导入"><a href="#问题导入" class="headerlink" title="问题导入"></a>问题导入</h2><p>编写的五子棋程序中，有存盘退出和续上盘的功能。</p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/xishudaoru.jpg" alt="问题导入"></p>
+<p>分析问题：因为该二维数组的很多值是默认值0, 因此记录了<strong>很多没有意义的数据 -&gt; 稀疏数组</strong>。</p>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>当一个数组中大部分元素为０，或者为同一个值的数组时，可以使用稀疏数组来保存该数组。</p>
+<p>稀疏数组的处理方法是：</p>
+<ul>
+<li><p>记录数组一共有几行几列，有多少个不同的值。</p>
+</li>
+<li><p>把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模。</p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/xishujieshao.jpg" alt="基本介绍"></p>
+</li>
+</ul>
+<h2 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h2><ul>
+<li><p>使用稀疏数组，来保留类似前面的二维数组(棋盘、地图等等)。</p>
+</li>
+<li><p>把稀疏数组存盘，并且可以从新恢复原来的二维数组数。</p>
+</li>
+</ul>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2019-07/algorithmAndDataStructure/xishusilu.jpg" alt="思路分析"></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SparseArray</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建一个原始的二维数组11 * 11</span></span><br><span class="line">        <span class="comment">// 0: 表示没有棋子， 1 表示黑子2 表蓝子</span></span><br><span class="line">        <span class="keyword">int</span>[][] chessArr1 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">11</span>][<span class="number">11</span>];</span><br><span class="line">        chessArr1[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">        chessArr1[<span class="number">2</span>][<span class="number">3</span>] = <span class="number">2</span>;</span><br><span class="line">        chessArr1[<span class="number">4</span>][<span class="number">5</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="comment">// 输出原始的二维数组</span></span><br><span class="line">        System.out.println(<span class="string">"原始的二维数组~~"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] row : chessArr1) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> data : row) &#123;</span><br><span class="line">                System.out.printf(<span class="string">"%d\t"</span>, data);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将二维数组转稀疏数组的思路</span></span><br><span class="line">        <span class="comment">// 1. 先遍历二维数组得到非0 数据的个数</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chessArr1.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; chessArr1.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (chessArr1[i][j] != <span class="number">0</span>) &#123;</span><br><span class="line">                    sum++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 创建对应的稀疏数组</span></span><br><span class="line">        <span class="keyword">int</span>[][] sparseArr = <span class="keyword">new</span> <span class="keyword">int</span>[sum + <span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">        <span class="comment">// 给稀疏数组赋值</span></span><br><span class="line">        sparseArr[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">11</span>;</span><br><span class="line">        sparseArr[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">11</span>;</span><br><span class="line">        sparseArr[<span class="number">0</span>][<span class="number">2</span>] = sum;</span><br><span class="line">        <span class="comment">// 遍历二维数组，将非0 的值存放到sparseArr 中</span></span><br><span class="line">        <span class="comment">// count 用于记录是第几个非0 数据</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chessArr1.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; chessArr1.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (chessArr1[i][j] != <span class="number">0</span>) &#123;</span><br><span class="line">                    count++;</span><br><span class="line">                    sparseArr[count][<span class="number">0</span>] = i;</span><br><span class="line">                    sparseArr[count][<span class="number">1</span>] = j;</span><br><span class="line">                    sparseArr[count][<span class="number">2</span>] = chessArr1[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出稀疏数组的形式</span></span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println(<span class="string">"得到稀疏数组为~~~~"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sparseArr.length; i++) &#123;</span><br><span class="line">            System.out.printf(<span class="string">"%d\t%d\t%d\t\n"</span>, sparseArr[i][<span class="number">0</span>], sparseArr[i][<span class="number">1</span>], sparseArr[i][<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将稀疏数组 --&gt; 恢复成原始的二维数组</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 1. 先读取稀疏数组的第一行，根据第一行的数据，创建原始的二维数组，比如上面的chessArr2 = int[11][11]</span></span><br><span class="line"><span class="comment">         * 2. 在读取稀疏数组后几行的数据，并赋给原始的二维数组即可.</span></span><br><span class="line"><span class="comment">         * */</span></span><br><span class="line">        <span class="comment">//1. 先读取稀疏数组的第一行，根据第一行的数据，创建原始的二维数组</span></span><br><span class="line">        <span class="keyword">int</span>[][] chessArr2 = <span class="keyword">new</span> <span class="keyword">int</span>[sparseArr[<span class="number">0</span>][<span class="number">0</span>]][sparseArr[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 在读取稀疏数组后几行的数据(从第二行开始)，并赋给原始的二维数组即可</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; sparseArr.length; i++) &#123;</span><br><span class="line">            chessArr2[sparseArr[i][<span class="number">0</span>]][sparseArr[i][<span class="number">1</span>]] = sparseArr[i][<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出恢复后的二维数组</span></span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println(<span class="string">"恢复后的二维数组"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] row : chessArr2) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> data : row) &#123;</span><br><span class="line">                System.out.printf(<span class="string">"%d\t"</span>, data);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
 
+    
+
+    
+    
+    
+    
+    <div>
+        
+            <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/static/wechat_pay.jpg" alt="kangjinghang 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>kangjinghang</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://lijingyuan.top/重学Java数据结构和算法（稀疏数组和队列）.html" title="重学Java数据结构和算法（稀疏数组和队列）">https://lijingyuan.top/重学Java数据结构和算法（稀疏数组和队列）.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/稀疏数组/" rel="tag"># 稀疏数组</a>
+          
+            <a href="/tags/队列/" rel="tag"># 队列</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/重学Java数据结构和算法（图）.html" rel="next" title="重学Java数据结构和算法（图）">
+                <i class="fa fa-chevron-left"></i> 重学Java数据结构和算法（图）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </div></article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -491,8 +758,17 @@ daovoice('update');
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -706,6 +982,23 @@ daovoice('update');
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#稀疏数组"><span class="nav-number">1.</span> <span class="nav-text">稀疏数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题导入"><span class="nav-number">1.1.</span> <span class="nav-text">问题导入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍"><span class="nav-number">1.2.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用实例"><span class="nav-number">1.3.</span> <span class="nav-text">应用实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路分析"><span class="nav-number">1.4.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">1.5.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -891,6 +1184,10 @@ daovoice('update');
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   
 
@@ -932,6 +1229,8 @@ daovoice('update');
 
 
 
+
+  
 
 
   
