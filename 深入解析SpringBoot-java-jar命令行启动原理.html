@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5351135917838281",
+    enable_page_level_ads: true
+  });
+</script>
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+    <style>
+    .pace .pace-progress {
+    background: #1E92FB; /*进度条颜色*/
+    height: 3px;
+    }
+    .pace .pace-progress-inner {
+    box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    border-top-color: #1E92FB;    /*上边框颜色*/
+    border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5351135917838281",
+    enable_page_level_ads: true
+  });
+</script>
+
+
+ <script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/b6dbddb6.js","daovoice")
+ daovoice('init', {
+  app_id: "1adb1866"
+});
+daovoice('update');
+ </script>
+
+
+  <meta name="description" content="在spring boot里，很吸引人的一个特性是可以直接把应用打包成为一个jar/war，然后这个jar/war是可以直接启动的，而不需要另外配置一个Web Server。那么spring boot如何启动的？我们先来创建一个基本的spring boot工程来帮助我们分析，本次spring boot版本为 2.2.5.RELEASE。 12345678@SpringBootApplicationp">
+<meta name="keywords" content="SpringBoot,java -jar,原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入解析SpringBoot java -jar命令行启动原理">
+<meta property="og:url" content="https://lijingyuan.top/深入解析SpringBoot-java-jar命令行启动原理.html">
+<meta property="og:site_name" content="丽璟园">
+<meta property="og:description" content="在spring boot里，很吸引人的一个特性是可以直接把应用打包成为一个jar/war，然后这个jar/war是可以直接启动的，而不需要另外配置一个Web Server。那么spring boot如何启动的？我们先来创建一个基本的spring boot工程来帮助我们分析，本次spring boot版本为 2.2.5.RELEASE。 12345678@SpringBootApplicationp">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/1.png">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/2.png">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/3.png">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/4.png">
+<meta property="og:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/5.png">
+<meta property="og:updated_time" content="2020-05-29T13:24:30.478Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入解析SpringBoot java -jar命令行启动原理">
+<meta name="twitter:description" content="在spring boot里，很吸引人的一个特性是可以直接把应用打包成为一个jar/war，然后这个jar/war是可以直接启动的，而不需要另外配置一个Web Server。那么spring boot如何启动的？我们先来创建一个基本的spring boot工程来帮助我们分析，本次spring boot版本为 2.2.5.RELEASE。 12345678@SpringBootApplicationp">
+<meta name="twitter:image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="丽璟园" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://lijingyuan.top/深入解析SpringBoot-java-jar命令行启动原理">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>深入解析SpringBoot java -jar命令行启动原理 | 丽璟园</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b0c8ff4971347a7879ff82302af68b74";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丽璟园</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/kangjinghang" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lijingyuan.top/深入解析SpringBoot-java-jar命令行启动原理.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kangjinghang">
+      <meta itemprop="description" content="不安便求安，安之又思变。">
+      <meta itemprop="image" content="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/static/headImg-li.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丽璟园">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入解析SpringBoot java -jar命令行启动原理
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-29 21:13:24 / 修改时间：21:24:30" itemprop="dateCreated datePublished" datetime="2020-05-29T21:13:24+08:00">2020-05-29</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/深入解析SpringBoot-java-jar命令行启动原理.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/深入解析SpringBoot-java-jar命令行启动原理.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">18k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">17 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- 嵌入式广告 -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- span -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5351135917838281" data-ad-slot="5827056535" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <p>在spring boot里，很吸引人的一个特性是可以直接把应用打包成为一个jar/war，然后这个jar/war是可以直接启动的，而不需要另外配置一个Web Server。那么spring boot如何启动的？我们先来创建一个基本的spring boot工程来帮助我们分析，本次spring boot版本为 2.2.5.RELEASE。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBootDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringBootDemo.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是pom依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>springboot-demo<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>创建完工程后，执行maven的打包命令，会生成两个jar文件： </p>
+<blockquote>
+<p>springboot-demo.jar</p>
+<p>springboot-demo.jar.original</p>
+</blockquote>
+<p>其中springboot-demo.jar.original是默认的maven-jar-plugin生成的包。springboot-demo.jar.jar是spring boot maven插件生成的jar包，里面包含了应用的依赖，以及spring boot相关的类。下面称之为executable jar。后者仅包含应用编译后的本地资源，而前者引入了相关的第三方依赖，这点从文件大小也能看出。 </p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/1.png" alt="图1"></p>
+<p>关于executable jar，<a href="https://docs.spring.io/spring-boot/docs/2.2.5.RELEASE/reference/html/getting-started.html#getting-started-first-application-executable-jar" rel="external nofollow noopener noreferrer" target="_blank">spring boot官方文档</a> 中是这样解释的。</p>
+<blockquote>
+<p>Executable jars (sometimes called “fat jars”) are archives containing your compiled classes along with all of the jar dependencies that your code needs to run. </p>
+<p>Executable jar（有时称为“fat jars”）是包含您的<strong>已编译类以及代码需要运行的所有jar依赖项</strong>的归档文件。</p>
+<p>Java does not provide any standard way to load nested jar files (that is, jar files that are themselves contained within a jar). This can be problematic if you need to distribute a self-contained application that can be run from the command line without unpacking.  </p>
+<p><strong>Java没有提供任何标准的方式来加载嵌套的jar文件（即，它们本身包含在jar中的jar文件）</strong>。如果您需要分发一个自包含的应用程序，而该应用程序可以从命令行运行而无需解压缩，则可能会出现问题。</p>
+<p>To solve this problem, many developers use “shaded” jars. A shaded jar packages all classes, from all jars, into a single “uber jar”. The problem with shaded jars is that it becomes hard to see which libraries are actually in your application. It can also be problematic if the same filename is used (but with different content) in multiple jars. </p>
+<p>为了解决这个问题，许多开发人员使用 shaded jars。 一个 shaded jar 将来自所有jar的所有类打包到一个 uber(超级)jar 中。 shaded jars的问题在于，很难查看应用程序中实际包含哪些库。 如果在多个jar中使用相同的文件名（但具有不同的内容），也可能会产生问题。</p>
+<p>Spring Boot takes a different approach and lets you actually nest jars directly.</p>
+<p>Spring Boot采用了另一种方法，实际上允许您直接嵌套jar。</p>
+</blockquote>
+<p>Java标准中是没有来加载嵌套的jar文件，就是jar中的jar的方式的，为了解决这一问题，spring boot采用了不同于shaded jars的另一种方式。</p>
+<h2 id="Executable-Jar-文件结构"><a href="#Executable-Jar-文件结构" class="headerlink" title="Executable Jar 文件结构"></a>Executable Jar 文件结构</h2><p>那么具体是如何实现的呢？带着这个疑问，先来查看spring boot打好的包的目录结构（不重要的省略掉）： </p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&gt; springboot-demo.jar</span><br><span class="line">&gt; ├── BOOT-INF</span><br><span class="line">&gt; │   ├── classes</span><br><span class="line">&gt; │   │	├── application.properties  # 用户-配置文件</span><br><span class="line">&gt; │   │	└── com</span><br><span class="line">&gt; │   │		└── example</span><br><span class="line">&gt; │   │			└── spring</span><br><span class="line">&gt; │   │				└── boot</span><br><span class="line">&gt; │   |					└── demo</span><br><span class="line">&gt; │   │						└── SpringBootDemo.class  # 用户-启动类</span><br><span class="line">&gt; │   └── lib</span><br><span class="line">&gt; │       ├── classmate-1.5.1.jar</span><br><span class="line">&gt; │       ├── hibernate-validator-6.0.18.Final.jar</span><br><span class="line">&gt; │       ├── jackson-xxx.jar</span><br><span class="line">&gt; │       ├── log4j-xxx.jar</span><br><span class="line">&gt; │       ├── logback-xxx.jar</span><br><span class="line">&gt; │       ├── slf4j-api-1.7.28.jar</span><br><span class="line">&gt; │       ├── snakeyaml-1.25.jar</span><br><span class="line">&gt; │       ├── spring-xxx.jar</span><br><span class="line">&gt; │       ├── ...省略</span><br><span class="line">&gt; ├── META-INF</span><br><span class="line">&gt; │   ├── MANIFEST.MF</span><br><span class="line">&gt; │   └── maven</span><br><span class="line">&gt; │       └── com.example</span><br><span class="line">&gt; │           └── spring-boot-demo</span><br><span class="line">&gt; │               ├── pom.properties</span><br><span class="line">&gt; │               └── pom.xml</span><br><span class="line">&gt; └── org</span><br><span class="line">&gt;     └── springframework</span><br><span class="line">&gt;         └── boot</span><br><span class="line">&gt;             └── loader</span><br><span class="line">&gt;                 ├── ExecutableArchiveLauncher.class</span><br><span class="line">&gt;                 ├── JarLauncher.class</span><br><span class="line">&gt;                 ├── LaunchedURLClassLoader$UseFastConnectionExceptionsEnumeration.class</span><br><span class="line">&gt;                 ├── LaunchedURLClassLoader.class</span><br><span class="line">&gt;                 ├── Launcher.class</span><br><span class="line">&gt;                 ├── MainMethodRunner.class</span><br><span class="line">&gt;                 ├── PropertiesLauncher$1.class</span><br><span class="line">&gt;                 ├── PropertiesLauncher$ArchiveEntryFilter.class</span><br><span class="line">&gt;                 ├── PropertiesLauncher$PrefixMatchingArchiveFilter.class</span><br><span class="line">&gt;                 ├── PropertiesLauncher.class</span><br><span class="line">&gt;                 ├── WarLauncher.class</span><br><span class="line">&gt;                 ├── archive</span><br><span class="line">&gt;                 │   ├── ... 省略</span><br><span class="line">&gt;                 ├── data</span><br><span class="line">&gt;                 │   ├── ... 省略</span><br><span class="line">&gt;                 ├── jar</span><br><span class="line">&gt;                 │   ├── ... 省略</span><br><span class="line">&gt;                 └── util</span><br><span class="line">&gt;                     └── SystemPropertyUtils.class</span><br><span class="line">&gt;       </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>简单来看，FatJar 解压之后包括三个文件夹： </p>
+<blockquote>
+<p>├── BOOT-INF # 存放的是我们业务相关的，包括业务开发的类和配置文件，以及依赖的jar<br>│    ├── classes<br>│    └── lib<br>├── META-INF # 包括 MANIFEST.MF 描述文件和 maven 的构建信息<br>│    ├── MANIFEST.MF<br>│     └── maven<br>└── org<br>    └── springframework</p>
+<p>​        └── boot</p>
+<p>​            └── springframework</p>
+<p>​                └── loader  # Spring boot loader  相关类</p>
+</blockquote>
+<p>可以发现，</p>
+<blockquote>
+<p>Application classes should be placed in a nested <code>BOOT-INF/classes</code> directory. Dependencies should be placed in a nested <code>BOOT-INF/lib</code> directory. </p>
+</blockquote>
+<p>我们通常在服务器中使用<code>java -jar</code> 命令启动我们的应用程序，在<a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html" rel="external nofollow noopener noreferrer" target="_blank">Java官方文档</a>是这样描述的：</p>
+<blockquote>
+<p>Executes a program encapsulated in a JAR file. The filename argument is the name of a JAR file with a manifest that contains a line in the form Main-Class:classname that defines the class with the public static void main(String[] args) method that serves as your application’s starting point.</p>
+<p>执行封装在JAR文件中的程序。filename参数是具有清单的JAR文件的名称，该清单包含Main-Class：classname形式的行，该行使用公共静态void main（String [] args）方法定义该类，该方法充当应用程序的起点。</p>
+<p>When you use the -jar option, the specified JAR file is the source of all user classes, and other class path settings are ignored.</p>
+<p> 使用-jar选项时，指定的JAR文件是所有用户类的源，而其他类路径设置将被忽略。</p>
+</blockquote>
+<p>简单说就是，java -jar 命令引导的具体启动类必须配置在 MANIFEST.MF 文件的 Main-Class 属性中，该命令用来引导标准可执行的jar文件，读取的是 MANIFEST.MF文件的Main-Class 属性值，Main-Class 也就是定义包含了main方法的类代表了应用程序执行入口类。 </p>
+<p>那么回过头再去看下之前打包好、解压之后的文件目录，找到 /META-INF/MANIFEST.MF 文件，看下元数据： </p>
+<blockquote>
+<p>Manifest-Version: 1.0<br>Implementation-Title: spring-boot-demo<br>Implementation-Version: 1.0-SNAPSHOT<br>Start-Class: com.example.spring.boot.demo.SpringBootDemo<br>Spring-Boot-Classes: BOOT-INF/classes/<br>Spring-Boot-Lib: BOOT-INF/lib/<br>Build-Jdk-Spec: 1.8<br>Spring-Boot-Version: 2.2.5.RELEASE<br>Created-By: Maven Archiver 3.4.0<br>Main-Class: org.springframework.boot.loader.JarLauncher</p>
+</blockquote>
+<p>可以看到Main-Class是org.springframework.boot.loader.JarLauncher ，说明项目的启动入口并不是我们自己定义的启动类，而是JarLauncher。而我们自己的项目引导类com.example.spring.boot.demo.SpringBootDemo，定义在了Start-Class属性中，这个属性并非Java标准的MANIFEST.MF文件属性。</p>
+<h2 id="spring-boot-maven-plugin-打包过程"><a href="#spring-boot-maven-plugin-打包过程" class="headerlink" title="spring-boot-maven-plugin 打包过程"></a>spring-boot-maven-plugin 打包过程</h2><p>我们并没有添加org.springframework.boot.loader下的这些类的依赖，那么它们是如何被打包在 FatJar 里面的呢？这就必须要提到spring-boot-maven-plugin插件的工作机制了 。对于每个新建的 spring boot工程，可以在其 pom.xml 文件中看到如下插件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个是 SpringBoot 官方提供的用于打包 FatJar 的插件，org.springframework.boot.loader 下的类其实就是通过这个插件打进去的；</p>
+<p>当我们执行package命令的时候会看到下面这样的日志：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[INFO] --- spring-boot-maven-plugin:2.2.5.RELEASE:repackage (repackage) @ spring-boot-demo ---</span><br><span class="line">[INFO] Replacing main artifact with repackaged archive</span><br></pre></td></tr></table></figure>
+
+<p>repackage目标对应的将执行到org.springframework.boot.maven.RepackageMojo#execute，该方法的主要逻辑是调用了org.springframework.boot.maven.RepackageMojo#repackage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">private void repackage() throws MojoExecutionException &#123;</span><br><span class="line">	// 获取使用maven-jar-plugin生成的jar，最终的命名将加上.orignal后缀</span><br><span class="line">    Artifact source = getSourceArtifact();</span><br><span class="line">    // 最终文件，即Fat jar</span><br><span class="line">    File target = getTargetFile();</span><br><span class="line">    // 获取重新打包器，将重新打包成可执行jar文件</span><br><span class="line">    Repackager repackager = getRepackager(source.getFile());  </span><br><span class="line">	// 查找并过滤项目运行时依赖的jar</span><br><span class="line">    Set&lt;Artifact&gt; artifacts = filterDependencies(this.project.getArtifacts(), getFilters(getAdditionalFilters()));</span><br><span class="line">    // 将artifacts转换成libraries</span><br><span class="line">    Libraries libraries = new ArtifactsLibraries(artifacts, this.requiresUnpack, getLog());</span><br><span class="line">    try &#123;</span><br><span class="line">    	// 提供Spring Boot启动脚本</span><br><span class="line">        LaunchScript launchScript = getLaunchScript();</span><br><span class="line">        // 执行重新打包逻辑，生成最后fat jar</span><br><span class="line">        repackager.repackage(target, libraries, launchScript);</span><br><span class="line">    &#125;</span><br><span class="line">    catch (IOException ex) &#123;</span><br><span class="line">        throw new MojoExecutionException(ex.getMessage(), ex);</span><br><span class="line">    &#125;</span><br><span class="line">    // 将source更新成 xxx.jar.orignal文件</span><br><span class="line">    updateArtifact(source, target, repackager.getBackupFile());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 继续跟踪getRepackager这个方法，知道Repackager是如何生成的，也就大致能够推测出内在的打包逻辑。</span><br><span class="line">private Repackager getRepackager(File source) &#123;</span><br><span class="line">    Repackager repackager = new Repackager(source, this.layoutFactory);</span><br><span class="line">    repackager.addMainClassTimeoutWarningListener(new LoggingMainClassTimeoutWarningListener());</span><br><span class="line">    // 设置main class的名称，如果不指定的话则会查找第一个包含main方法的类，repacke最后将会设置org.springframework.boot.loader.JarLauncher</span><br><span class="line">    repackager.setMainClass(this.mainClass);</span><br><span class="line">    if (this.layout != null) &#123;</span><br><span class="line">        getLog().info(&quot;Layout: &quot; + this.layout);</span><br><span class="line">        repackager.setLayout(this.layout.layout());</span><br><span class="line">    &#125;</span><br><span class="line">    return repackager;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>repackager设置了 layout方法的返回对象，也就是org.springframework.boot.loader.tools.Layouts.Jar</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Executable JAR layout.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Jar</span> <span class="keyword">implements</span> <span class="title">RepackagingLayout</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLauncherClassName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"org.springframework.boot.loader.JarLauncher"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLibraryDestination</span><span class="params">(String libraryName, LibraryScope scope)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"BOOT-INF/lib/"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getClassesLocation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getRepackagedClassesLocation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"BOOT-INF/classes/"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isExecutable</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>layout我们可以将之翻译为文件布局，或者目录布局，代码一看清晰明了，同时我们又发现了定义在MANIFEST.MF 文件的Main-Class属性org.springframework.boot.loader.JarLauncher了，看来我们的下面的重点就是这个JarLauncher了。</p>
+<h2 id="JarLauncher构造过程"><a href="#JarLauncher构造过程" class="headerlink" title="JarLauncher构造过程"></a>JarLauncher构造过程</h2><p>因为org.springframework.boot.loader.JarLauncher的类是在spring-boot-loader中的，关于spring-boot-loader，spring boot的github上是这样介绍的：</p>
+<blockquote>
+<p>Spring Boot Loader provides the secret sauce that allows you to build a single jar file that can be launched using <code>java -jar</code>. Generally you will not need to use <code>spring-boot-loader</code> directly, but instead work with the <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-tools/spring-boot-gradle-plugin" rel="external nofollow noopener noreferrer" target="_blank">Gradle</a> or <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-tools/spring-boot-maven-plugin" rel="external nofollow noopener noreferrer" target="_blank">Maven</a> plugin. </p>
+<p>Spring Boot Loader提供了秘密工具，可让您构建可以使用java -jar启动的单个jar文件。通常，您不需要直接使用spring-boot-loader，而可以使用Gradle或Maven插件。</p>
+</blockquote>
+<p>但是若想在IDEA中来看源码，需要在pom文件中引入如下配置： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-loader<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>找到org.springframework.boot.loader.JarLauncher类 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JarLauncher</span> <span class="keyword">extends</span> <span class="title">ExecutableArchiveLauncher</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// BOOT-INF/classes/</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> String BOOT_INF_CLASSES = <span class="string">"BOOT-INF/classes/"</span>;</span><br><span class="line">	<span class="comment">// BOOT-INF/lib/</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> String BOOT_INF_LIB = <span class="string">"BOOT-INF/lib/"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">JarLauncher</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="title">JarLauncher</span><span class="params">(Archive archive)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(archive);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isNestedArchive</span><span class="params">(Archive.Entry entry)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (entry.isDirectory()) &#123;</span><br><span class="line">			<span class="keyword">return</span> entry.getName().equals(BOOT_INF_CLASSES);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> entry.getName().startsWith(BOOT_INF_LIB);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// main方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="keyword">new</span> JarLauncher().launch(args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，JarLauncher定义了BOOT_INF_CLASSES和BOOT_INF_LIB两个常量，正好就是前面我们解压之后的两个文件目录。JarLauncher包含了一个main方法，作为应用的启动入口。</p>
+<p>从 main 来看，只是构造了一个 JarLauncher对象，然后执行其 launch 方法 。再来看一下JarLauncher的继承结构：</p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/2.png" alt="图2"></p>
+<p>构造JarLauncherd对象时会调用父类ExecutableArchiveLauncher的构造方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ExecutableArchiveLauncher</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 构造 archive 对象</span></span><br><span class="line">        <span class="keyword">this</span>.archive = createArchive();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(ex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 构造 archive 对象</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> Archive <span class="title">createArchive</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ProtectionDomain protectionDomain = getClass().getProtectionDomain();</span><br><span class="line">    CodeSource codeSource = protectionDomain.getCodeSource();</span><br><span class="line">    URI location = (codeSource != <span class="keyword">null</span>) ? codeSource.getLocation().toURI() : <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">// 这里就是拿到当前的 classpath 的绝对路径</span></span><br><span class="line">    String path = (location != <span class="keyword">null</span>) ? location.getSchemeSpecificPart() : <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (path == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Unable to determine code source archive"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    File root = <span class="keyword">new</span> File(path);</span><br><span class="line">    <span class="keyword">if</span> (!root.exists()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Unable to determine code source archive from "</span> + root);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将构造的archive 对象返回</span></span><br><span class="line">    <span class="keyword">return</span> (root.isDirectory() ? <span class="keyword">new</span> ExplodedArchive(root) : <span class="keyword">new</span> JarFileArchive(root));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Archive"><a href="#Archive" class="headerlink" title="Archive"></a>Archive</h2><p>这里又需要我们先来了解一下Archive相关的概念。</p>
+<ul>
+<li>archive即归档文件，这个概念在linux下比较常见 </li>
+<li>通常就是一个tar/zip格式的压缩包 </li>
+<li>jar是zip格式 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Archive</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> URL <span class="title">getUrl</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getMainClass</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Collection&lt;Entry&gt; <span class="title">getEntries</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> List&lt;Archive&gt; <span class="title">getNestedArchives</span><span class="params">(EntryFilter filter)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Archive是在spring boot里抽象出来的用来统一访问资源的接口。该接口有两个实现，分别是ExplodedArchive和JarFileArchive。前者是一个文件目录，后者是一个jar，都是用来在文件目录和jar中寻找资源的，这里看到JarLauncher既支持jar启动，也支持文件系统启动，实际上我们在解压后的文件目录里执行 java org.springframework.boot.loader.JarLauncher 命令也是可以正常启动的。</p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/3.png" alt="图3"></p>
+<p>在FatJar中，使用的是后者。Archive有一个自己的URL，比如</p>
+<blockquote>
+<p>jar:file:/D:/java/workspace/spring-boot-bootstarp-demo/spring-boot-demo/target/springboot-demo.jar!</p>
+</blockquote>
+<p>还有一个getNestedArchives方法，这个实际返回的是springboot-demo.jar/lib下面的jar的Archive列表。它们的URL是： </p>
+<blockquote>
+<p>jar:file:/D:/java/workspace/spring-boot-bootstarp-demo/spring-boot-demo/target/springboot-demo.jar!/BOOT-INF/lib/spring-boot-starter-web-2.2.5.RELEASE.jar!</p>
+<p>jar:file:/D:/java/workspace/spring-boot-bootstarp-demo/spring-boot-demo/target/springboot-demo.jar!/BOOT-INF/lib/spring-boot-starter-2.2.5.RELEASE.jar!</p>
+<p>jar:file:/D:/java/workspace/spring-boot-bootstarp-demo/spring-boot-demo/target/springboot-demo.jar!/BOOT-INF/lib/spring-boot-2.2.5.RELEASE.jar!</p>
+<p>jar:file:/D:/java/workspace/spring-boot-bootstarp-demo/spring-boot-demo/target/springboot-demo.jar!/BOOT-INF/lib/spring-boot-autoconfigure-2.2.5.RELEASE.jar!/</p>
+<p>……</p>
+</blockquote>
+<h2 id="launch-执行流程"><a href="#launch-执行流程" class="headerlink" title="launch()执行流程"></a>launch()执行流程</h2><p>archive构造完成后继续执行JarLauncher父类的Launcher的launch方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">launch</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	<span class="comment">// 利用 java.net.URLStreamHandler 的扩展机制注册了SpringBoot的自定义的可以解析嵌套jar的协议。因为SpringBoot FatJar除包含传统Java Jar中的资源外还包含依赖的第三方Jar文件，当SpringBoot       // FatJar被java -jar命令引导时，其内部的Jar文件是无法被JDK的默认实现sun.net.www.protocol.jar.Handler当做classpath的，这就是SpringBoot的自定义协议的原因。</span></span><br><span class="line">    JarFile.registerUrlProtocolHandler();</span><br><span class="line">    <span class="comment">// 通过 classpath 来构建一个 ClassLoade</span></span><br><span class="line">    ClassLoader classLoader = createClassLoader(getClassPathArchives());</span><br><span class="line">    launch(args, getMainClass(), classLoader);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重点关注下createClassLoader(getClassPathArchives()) 构建ClassLoader的逻辑，getClassPathArchives()方法返回值作为参数，该方法为抽象方法，具体实现在子类ExecutableArchiveLauncher中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> List&lt;Archive&gt; <span class="title">getClassPathArchives</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    List&lt;Archive&gt; archives = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="keyword">this</span>.archive.getNestedArchives(<span class="keyword">this</span>::isNestedArchive));</span><br><span class="line">    postProcessClassPathArchives(archives);</span><br><span class="line">    <span class="keyword">return</span> archives;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该方法会执行Archive接口定义的getNestedArchives方法返回的与指定过滤器匹配的条目的嵌套存档列表。从上文可以发现，这里的archive其实就是JarFileArchive ，传入的过滤器是JarLauncher#isNestedArchive方法引用 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isNestedArchive</span><span class="params">(Archive.Entry entry)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// entry是文件目录时，必须是我们自己的业务类所在的目录 BOOT-INF/classes/</span></span><br><span class="line">    <span class="keyword">if</span> (entry.isDirectory()) &#123;</span><br><span class="line">        <span class="keyword">return</span> entry.getName().equals(BOOT_INF_CLASSES);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// entry是Jar文件时，需要在依赖的文件目录 BOOT-INF/lib/下面</span></span><br><span class="line">    <span class="keyword">return</span> entry.getName().startsWith(BOOT_INF_LIB);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>getClassPathArchives方法通过过滤器将BOOT-INF/classes/和BOOT-INF/lib/下的嵌套存档作为List&lt;Archive&gt;返回参数传入createClassLoader方法中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> ClassLoader <span class="title">createClassLoader</span><span class="params">(List&lt;Archive&gt; archives)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    List&lt;URL&gt; urls = <span class="keyword">new</span> ArrayList&lt;&gt;(archives.size());</span><br><span class="line">    <span class="keyword">for</span> (Archive archive : archives) &#123;</span><br><span class="line">        <span class="comment">// 前面说到，archive有一个自己的URL的，获得archive的URL放到list中</span></span><br><span class="line">        urls.add(archive.getUrl());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> createClassLoader(urls.toArray(<span class="keyword">new</span> URL[<span class="number">0</span>]));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> ClassLoader <span class="title">createClassLoader</span><span class="params">(URL[] urls)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> LaunchedURLClassLoader(urls, getClass().getClassLoader());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>createClassLoader()方法目的是为得到的URL们创建一个类加载器 LaunchedURLClassLoader，构造时传入了当前Launcher的类加载器作为其父加载器，通常是系统类加载器。下面重点看一下LaunchedURLClassLoader的构造过程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LaunchedURLClassLoader</span><span class="params">(URL[] urls, ClassLoader parent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(urls, parent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>LaunchedURLClassLoader是spring boot自己定义的类加载器，继承了JDK的URLClassLoader并重写了loadClass方法，也就是说它修改了默认的类加载方式，定义了自己的类加载规则，可以从前面得到的 List&lt;Archive&gt;中加载依赖包的class文件了 。</p>
+<p>LaunchedURLClassLoader创建完成后，我们回到Launcher中，下一步就是执行launch的重载方法了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launch(args, getMainClass(), classLoader);</span><br></pre></td></tr></table></figure>
+
+<p>在此之前，会调用getMainClass方法并将其返回值作为参。</p>
+<p>getMainClass的实现在Launcher的子类ExecutableArchiveLauncher中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> String <span class="title">getMainClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 从 archive 中拿到 Manifest文件</span></span><br><span class="line">    Manifest manifest = <span class="keyword">this</span>.archive.getManifest();</span><br><span class="line">    String mainClass = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (manifest != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 就是MANIFEST.MF 文件中定义的Start-Class属性，也就是我们自己写的com.example.spring.boot.demo.SpringBootDemo这个类</span></span><br><span class="line">        mainClass = manifest.getMainAttributes().getValue(<span class="string">"Start-Class"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (mainClass == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"No 'Start-Class' manifest entry specified in "</span> + <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回mainClass</span></span><br><span class="line">    <span class="keyword">return</span> mainClass;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得到mainClass后，执行launch的重载方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">launch</span><span class="params">(String[] args, String mainClass, ClassLoader classLoader)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 将自定义的LaunchedURLClassLoader设置为当前线程上下文类加载器</span></span><br><span class="line">    Thread.currentThread().setContextClassLoader(classLoader);</span><br><span class="line">    <span class="comment">// 构建一个 MainMethodRunner 实例对象来启动应用</span></span><br><span class="line">    createMainMethodRunner(mainClass, args, classLoader).run();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> MainMethodRunner <span class="title">createMainMethodRunner</span><span class="params">(String mainClass, String[] args, ClassLoader classLoader)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> MainMethodRunner(mainClass, args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MainMethodRunner对象构建完成后，调用它的run方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// 使用当前线程上下文类加载器也就是自定义的LaunchedURLClassLoader来加载我们自己写的com.example.spring.boot.demo.SpringBootDemo这个类</span></span><br><span class="line">    Class&lt;?&gt; mainClass = Thread.currentThread().getContextClassLoader().loadClass(<span class="keyword">this</span>.mainClassName);</span><br><span class="line">    <span class="comment">// 找到SpringBootDemo的main方法</span></span><br><span class="line">    Method mainMethod = mainClass.getDeclaredMethod(<span class="string">"main"</span>, String[].class);</span><br><span class="line">    <span class="comment">// 通过反射的方式调用main方法</span></span><br><span class="line">    mainMethod.invoke(<span class="keyword">null</span>, <span class="keyword">new</span> Object[] &#123; <span class="keyword">this</span>.args &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们自己的main方法开始被调用，所有我们自己的应用程序类文件均可通过/BOOT-INF/classes加载，所有依赖的第三方jar均可通过/BOOT-INF/lib加载，然后就开始了spring boot的启动流程了。</p>
+<h2 id="debug技巧"><a href="#debug技巧" class="headerlink" title="debug技巧"></a>debug技巧</h2><p>以上就是spring boot通过Java -jar命令启动的原理了，了解了原理以后我们可不可以通过debug来进一步加深一下理解呢？通常我们在IDEA里启动时是直接运行main方法，因为依赖的Jar都让IDEA放到classpath里了，所以spring boot直接启动就完事了，并不会通过上面的方式来启动。不过我们可以通过配置IDEA的 run/debug configurations 配置 JAR Application 来实现通过Jar方式启动。</p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/4.png" alt="图4"></p>
+<p>当我们做了以上设置后，就可以来方便的在IDEA里来dubug源码了。</p>
+<p><img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/2020-05/springboot-bootstrap/5.png" alt="图5"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本文通过JarLauncher为切入点，介绍了spring boot的Java -jar的启动方式，阐述了JarLauncher启动的基本工作原理，同时简单介绍了相关的spring-boot-maven-plugin插件和Archive、LaunchedURLClassLoader等相关概念，希望能够对大家的理解有所帮助。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+    
+    <div>
+        
+            <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>予人玫瑰，手有余香</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/static/wechat_pay.jpg" alt="kangjinghang 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>kangjinghang</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://lijingyuan.top/深入解析SpringBoot-java-jar命令行启动原理.html" title="深入解析SpringBoot java -jar命令行启动原理">https://lijingyuan.top/深入解析SpringBoot-java-jar命令行启动原理.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+              <div id="needsharebutton-postbottom">
+                <span class="btn">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+            
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/重学Java数据结构和算法（常用算法）.html" rel="next" title="重学Java数据结构和算法（常用算法）">
+                <i class="fa fa-chevron-left"></i> 重学Java数据结构和算法（常用算法）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </div></article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- span -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5351135917838281" data-ad-slot="5827056535" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <div class="comments" id="comments">
+    </div>
+
+  
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://blog-1259650185.cos.ap-beijing.myqcloud.com/blog/static/headImg-li.jpg" alt="kangjinghang">
+            
+              <p class="site-author-name" itemprop="name">kangjinghang</p>
+              <div class="site-description motion-element" itemprop="description">不安便求安，安之又思变。</div>
+          </div>
+
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=441442&auto=0&height=66"></iframe>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+          
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/kangjinghang" title="GitHub &rarr; https://github.com/kangjinghang" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:kangjinghang@gmail.com" title="E-Mail &rarr; mailto:kangjinghang@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/60aa1a125369" title="简书 &rarr; https://www.jianshu.com/u/60aa1a125369" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/kangjnghang" title="CSDN &rarr; https://blog.csdn.net/kangjnghang" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-spinner"></i>CSDN</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Executable-Jar-文件结构"><span class="nav-number">1.</span> <span class="nav-text">Executable Jar 文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-boot-maven-plugin-打包过程"><span class="nav-number">2.</span> <span class="nav-text">spring-boot-maven-plugin 打包过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JarLauncher构造过程"><span class="nav-number">3.</span> <span class="nav-text">JarLauncher构造过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Archive"><span class="nav-number">4.</span> <span class="nav-text">Archive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch-执行流程"><span class="nav-number">5.</span> <span class="nav-text">launch()执行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debug技巧"><span class="nav-number">6.</span> <span class="nav-text">debug技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">7.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+      
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+            <div id="myCanvasContainer" class="widget tagcloud">
+                <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                    <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AVL树/">AVL树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/B-树/">B*树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/B-树/">B+树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/B树/">B树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人网站/">个人网站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分查找算法/">二分查找算法</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉排序树/">二叉排序树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/冒泡排序/">冒泡排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/哈希表/">哈希表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/堆排序/">堆排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多路查找树/">多路查找树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/希尔排序/">希尔排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/平衡二叉树/">平衡二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广度优先遍历/">广度优先遍历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/归并排序/">归并排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快速排序/">快速排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序算法/">排序算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插值查找算法/">插值查找算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插入排序/">插入排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斐波那契查找算法/">斐波那契查找算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/查找算法/">查找算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树/">树</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度优先遍历/">深度优先遍历</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/稀疏数组/">稀疏数组</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线索化二叉树/">线索化二叉树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/赫夫曼树/">赫夫曼树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/赫夫曼编码/">赫夫曼编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/逆波兰计算器/">逆波兰计算器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/选择排序/">选择排序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归算法/">递归算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表/">链表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/队列/">队列</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/零基础/">零基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/顺序二叉树/">顺序二叉树</a><span class="tag-list-count">1</span></li></ul>
+                </canvas>
+            </div>
+        </div>
+      
+      
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- span -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5351135917838281" data-ad-slot="5827056535" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="external nofollow noopener noreferrer" target="_blank"> </a>&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-kangjinghang"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">康璟杭</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">246k</span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'qtqNa1EO4zgiWv0gFi2iEKnx-gzGzoHsz',
+    appKey: 'GzN0JNY6Tp7fAM4NzOBlti8v',
+    placeholder: '欢迎交流讨论...',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+      pbOptions = {};
+      
+        pbOptions.iconStyle = "box";
+      
+        pbOptions.boxForm = "horizontal";
+      
+        pbOptions.position = "bottomCenter";
+      
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+        flOptions.iconStyle = "box";
+      
+        flOptions.boxForm = "horizontal";
+      
+        flOptions.position = "middleRight";
+      
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":100,"height":310},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
