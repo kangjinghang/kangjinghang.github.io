@@ -131,10 +131,10 @@
         <category>数据结构和算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
-        <tag>二分查找算法</tag>
         <tag>数据结构</tag>
+        <tag>算法</tag>
         <tag>查找算法</tag>
+        <tag>二分查找算法</tag>
         <tag>插值查找算法</tag>
         <tag>斐波那契查找算法</tag>
       </tags>
@@ -159,8 +159,8 @@
         <category>数据结构和算法</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>数据结构</tag>
+        <tag>算法</tag>
         <tag>排序算法</tag>
         <tag>冒泡排序</tag>
         <tag>选择排序</tag>
